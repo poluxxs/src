@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Supprimer client
+{% endblock title%}
+
+{% block content %}
+
+<form method="post">
+   <div class="center">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="col-12">
+    <ul class="actions">
+      <li><input type="submit" value="Valider" class="primary" /></li>
+      <li><a href="{% url 'client_list' %}" class="button ">Annuler</a></li>
+    </ul>
+  </div>
+  </div>
+</form>
+{% endblock content%}

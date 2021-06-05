@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block extraScript %}
+{% endblock %}
+
+{% block content %}
+
+<h2>Détail de commande</h2>
+<div class="row gtr-uniform">
+
+  <div class="col-4 col-12-small">
+    <h4>Informations livraison</h4>
+    <blockquote>
+      <b>{{ transaction.delivery_location_1 }}</b><br>
+      <b>{{ transaction.delivery_location_2 }}</b><br>
+      <b>{{ transaction.delivery_date }} à {{ transaction.delivery_time }}</b>
+    </blockquote>
+  </div>
+  <div class="col-4 col-12-small">
+    <h4>Valeurs</h4>
+    <b>Produits: {{total_price}}.-</b><br>
+    <b>Livraison: {{transaction.delivery_fee}}.-</b><br>
+  </div>
+  <div class="col-4 col-12-small">
+    <h4>Détails supllémentaires </h4>
+    {{transaction.description}} <br>
+    <b>Commande passée le: {{ transaction.execution_date }}</b><br>
+
+  </div>
+  <div class="col-12">
+    <ul class="actions">
+      <li><a href="{% url 'transaction_edit' transaction.pk %}?nextID=transaction_detail{{transaction.pk}}" class="button small primary" data-tooltip>Editer les informations de livraison</a></li>
+    </ul>
+  </div>
+
+  <div class="col-12">
+    <h2>Détail des produits</h2>
+
+    <table class="table table-bordered table-hovered "cellspacing='0'>
+      <tr>
+        <thead>
+          <tr>
+            <th>Designation</th>
+            <th>Quantitée</th>
+            <th>Prix</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+      </tr>
+      {% for product in product_list %}
+      <tr>
+        <td>
+          {{ product.designation }}
+        </td>
+        <td>
+          {{product.quantity}}
+        </td>
+        <td>
+          {{ product.price }}
+        </td>
+        <td>
+          <a class=" icon primary solid fa-pen" href="{% url 'product_edit' product.pk %}?nextID=transaction_detail{{transaction.pk}}" title="Editer le produit" data-tooltip></a>
+
+          <a class=" icon primary solid fa-trash" name="delete" value="delete" href="{% url 'product_delete' product.pk %}?nextID=transaction_detail{{transaction.pk}}" title="Supprimer le produit" data-tooltip></a>
+        </td>
+      </tr>
+      {% endfor %}
+      <tfoot>
+        <tr>
+          <td colspan="2"></td>
+          <td> {{total_price}} </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="col-12">
+    <ul class="actions">
+      <li><a href="{% url 'product_create' transaction.pk %}?nextID=transaction_detail{{transaction.pk}}" class="button small primary" data-tooltip>Ajouter un produit</a></li>
+    </ul>
+  </div>
+</div>
+
+{% endblock %}

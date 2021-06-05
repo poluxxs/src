@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block extraScript %}
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Commandes du {{day}}</h1>
+    <table class="table table-bordered table-hovered "cellspacing='0'>
+        <tr>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Adresse livraison</th>
+              <th>Date livraison</th>
+              <th>Valeur totale</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+        </tr>
+        {% for transaction, price in mylist %}
+            <tr>
+                <td>
+                  {{ transaction.client }}
+                </td>
+                <td>
+                  {{ transaction.delivery_location_1 }}, {{ transaction.delivery_location_2 }}
+                </td>
+                <td>
+                  {{ transaction.delivery_date }}
+                </td>
+                <td>
+                  {{ price}}
+                </td>
+                <td>
+                  <a class=" icon primary solid fa-pen" href="{% url 'transaction_edit' transaction.pk %}?nextID=transaction_detail{{transaction.pk}}" title="Editer la commande" data-tooltip></a>
+
+                  <a class=" icon primary solid fa-search" href="{% url 'transaction_detail' transaction.pk %}" title="Détail de la commande" data-tooltip></a>
+
+                  <a class=" icon primary solid fa-trash" href="{% url 'transaction_delete' transaction.pk %}?next=transaction_list" title="Supprimer la commande" data-tooltip></a>
+
+                  <a class=" icon primary solid fa-print" href="{% url 'transaction_bill' transaction.pk  %}?next=transaction_list" title="Imprimer facture" data-tooltip></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endblock %}
+
+
+{% block modal %}
+{% endblock %}

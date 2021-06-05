@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block extraScript %}
+{% endblock %}
+
+{% block title %}
+Calendrier livraison
+{% endblock %}
+
+
+{% block content %}
+<div class="table-wrapper">
+  <table class="alt">
+    <thead>
+      <tr>
+        <th style="text-align:center">Lundi</th>
+        <th style="text-align:center">Mardi</th>
+        <th style="text-align:center">Mercredi</th>
+        <th style="text-align:center">Jeudi</th>
+        <th style="text-align:center">Vendredi</th>
+        <th style="text-align:center">Samedi</th>
+        <th style="text-align:center">Dimanche</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week in week_list %}
+      <tr>
+        {% for day_data,day,price,number in week %}
+        {% if day_data < today %}
+        <td style="text-align:center;"">
+          <br>
+        </td>
+        {% elif number == 0 %}
+        <td style="text-align:center;"> {{day}} 
+          <br>
+          <div style="visibility: hidden;">0 commandes</div>
+        </td>
+        {% elif number == 1 %}
+        <td style="background-color:#bebebe; text-align:center; width:14.2%;"> <a href="{% url 'transaction_day' day_data %}">  <b>{{day}}</b> </a><br>
+          <b> {{number}} commandes</b>
+        </td>
+        {% elif number == 2 %}
+        <td style="background-color:#686868; text-align:center; width:14.2%;"> <a href="{% url 'transaction_day' day_data %}">  <b style="color:white">{{day}}</b> </a>
+          <br>
+          <b style="color:white"> {{number}} commandes</b>
+        </td>
+        {% elif number == 3 %}
+        <td style="background-color:#404040; text-align:center; width:14.2%;"> <a href="{% url 'transaction_day' day_data %}">  <b style="color:white">{{day}}</b></a>
+          <br>
+          <b style="color:white"> {{number}} commandes</b>
+        </td>
+        {% elif number > 3 %}
+        <td style="background-color:#000000; text-align:center; width:14.2%;"> <a href="{% url 'transaction_day' day_data %}">  <b style="color:white">{{day}}</b> </a>
+          <br>
+          <b style="color:white"> {{number}} commandes</b>
+        </td>
+        {% else%}
+        <td style="background-color:{{price}}; text-align:center; width:14.2%;">   <a href="{% url 'transaction_day' day_data %}">  {{day}} </a><br>
+          {{number}}
+        </td>
+        {% endif %}
+        {% endfor day %}
+      </tr>
+      {% endfor week %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+
+
+{% block modal %}
+{% endblock %}

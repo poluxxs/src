@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Editer produit
+{% endblock title%}
+
+{% block content %}
+
+<form action=".?{{next_url}}" method='POST'>
+
+    <div class="row gtr-uniform">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for hidden_field in form.hidden_fields %}
+      {{ hidden_field.errors }}
+      {{ hidden_field }}
+      {% endfor %}
+
+    <div class="col-4 col-12-small">
+       <tr>
+          <th>{{ form.designation.label_tag }}</th>
+          <td>
+            {{ form.designation.errors }}
+            {{ form.designation }}
+          </td>
+        </tr>
+      </div>
+    <div class="col-4 col-12-small">
+       <tr>
+          <th>{{ form.quantity.label_tag }}</th>
+          <td>
+            {{ form.quantity.errors }}
+            {{ form.quantity }}
+          </td>
+        </tr>
+      </div>
+      <div class="col-4 col-12-small">
+        <tr>
+          <th>{{ form.price.label_tag }}</th>
+          <td>
+            {{ form.price.errors }}
+            {{ form.price }}
+          </td>
+        </tr>
+      </div>
+      <div class="col-12">
+        <ul class="actions">
+          <li><input type="submit" value="Modifier le produit" class="primary" /></li>
+          <!--
+          <li><a href="{% url 'transaction_list' %}" class="button ">Annuler</a></li>
+          -->
+        </ul>
+      </div>
+    </div>
+
+    </form>
+
+    {% endblock %}
+
+
+    {% block extraScript %}
+    {% endblock %}

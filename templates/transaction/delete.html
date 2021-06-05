@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Supprimer la transaction
+{% endblock title%}
+
+{% block content %}
+<form action=".?{{next_url}}" method='POST'>
+   <div class="center">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div class="col-12">
+    <ul class="actions">
+      <li><input type="submit" value="Valider" class="primary" /> </li>
+    </ul>
+  </div>
+  </div>
+</form>
+{% endblock content%}

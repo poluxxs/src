@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block extraScript %}
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Clients</h1>
+    <table class="table table-bordered table-hovered "cellspacing='0'>
+        <tr>
+          <thead>
+            <tr>
+              <th>Nom & prénom</th>
+              <th>Adresse</th>
+              <th>Mail</th>
+              <th></th>
+            </tr>
+          </thead>
+        </tr>
+        {% for client in object_list %}
+            <tr>
+                <td>
+                  {{ client.name }} {{ client.firstName }}
+                </td>
+                <td>
+                  {{ client.street }}, {{ client.postal_code }} {{ client.city }}
+                </td>
+                <td>
+                  {{ client.email }}
+                </td>
+                <td>
+                  <a class=" icon primary solid fa-pen" href="{% url 'client_edit' client.pk %}?nextID=client_detail{{client.pk}}" title="Editer le client" data-tooltip></a>
+
+                  <a class=" icon primary solid fa-search" href="{% url 'client_detail' client.pk %}" title="Détail du client" data-tooltip></a>
+
+                  <a class=" icon primary solid fa-trash" href="{% url 'client_delete' client.pk %}" title="Supprimer client" data-tooltip></a>
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <ul class="actions">
+      <li><a href="{% url 'client_create' 0 %}" class="button primary" data-tooltip>Nouveau client</a></li>
+    </ul>
+
+    <!ul class="actions">
+      <!li><!a href="#modal" class="button small"><!/a><!/li>
+    <!/ul>
+
+</section>
+
+
+{% endblock %}
+
+
+{% block modal %}
+{% endblock %}

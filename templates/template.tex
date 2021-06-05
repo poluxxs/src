@@ -1,0 +1,98 @@
+
+\documentclass[11pt]{article}
+\usepackage{dblfloatfix}
+ \usepackage[utf8]{inputenc} % un package
+ \usepackage[T1]{fontenc} % un second package
+\usepackage[francais]{babel} % un troisième package
+ \usepackage[pdftex]{graphicx}
+
+\pagestyle{empty}
+\usepackage[scale=0.775]{geometry}
+ \setlength{\parindent}{0pt}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=20mm,
+ right=20mm,
+ top=5mm,
+ bottom=0mm,
+ }
+
+{% graphicspath %}
+
+\begin{document}
+
+\begin{tabular}[t]{@{}l}
+\\
+\\
+\\
+\\
+  Pétale Rouge \\
+Atelier Floral  \\
+ Le Gottau 17 \\
+1566 St-Aubin \\
+026 677 01 00 \\
+CHE-399.154.300  \\
+ \\
+ \\
+N°: 2035/21
+\end{tabular}
+\hfill% move it to the right
+\begin{tabular}[t]{l@{}}
+\\
+\includegraphics[width=4cm]{petale_rouge.png}
+\end{tabular}
+\hfill
+\begin{tabular}[t]{l@{}}
+\\
+\\
+\\
+\\
+{{transaction.client.designation }}\\
+{{transaction.client.name }} {{transaction.client.firstName }} \\
+{{transaction.client.street}} \\
+{{transaction.client.postal_code }} {{transaction.client.city }}\\
+\\
+\\
+\\
+\\
+ St-Aubin, le \today
+\end{tabular}
+\vskip 5mm
+{{transaction.client.designation}},
+\vskip 5mm
+Nous nous permettons de vous faire parvenir la facture concernant les {% for product in product_list %} {{product.designation}},{% endfor %} livrées {{transaction.delivery_location_1 }} à {{transaction.delivery_location_2 }}, le {{transaction.delivery_date|date('d F Y') }}.
+
+\begin{center}
+\begin{tabularx}{1\textwidth} {
+   >{\raggedright\arraybackslash}X
+   >{\centering\arraybackslash}X
+   >{\centering\arraybackslash}X
+ >{\centering\arraybackslash}X
+ >{\centering\arraybackslash}X }
+  \textit{Désignation} & \textit{quantité} & \textit{genre} & \textit{prix unit.} & \textit{prix total} \\
+ & & & & \\
+ {% for product in product_list %}
+{{product.designation}}&{{product.quantity}}&pce&{{product.price}}&{{ product.quantity*product.price }} \\
+{% endfor %}
+
+
+Livraison&1& forfait  &{{transaction.delivery_fee}}&{{transaction.delivery_fee}}\\
+  \hline
+\textbf{Total} & & & & \textbf{ {{total_price}} }\\
+ & & & & \\
+ & & & & \\
+{\small  TVA 2.5\% inclue} & & & & {\small   {{ TVA|floatformat}} }
+\end{tabularx}
+\end{center}
+
+\textit{ \small  Paiement net à 30 jours, frais dès le 1er rappel de Fr. 10.00 et 5\% d'interêts}
+
+\begin{figure*}[!b]
+ \hspace*{-2cm}
+\includegraphics[width=21cm]{ {{ bill_name }}}
+\end{figure*}
+
+ \end{document}

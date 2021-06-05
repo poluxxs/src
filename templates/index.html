@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<!DOCTYPE HTML>
+
+<!--
+Phantom by HTML5 UP
+html5up.net | @ajlkn
+Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+{% block content %}
+<div id="main">
+	<div class="inner">
+		<header>
+			</header>
+
+			<section class="tiles">
+				<article class="style1">
+					<span class="image">
+						<img src="{% static 'images/pic01.jpg' %}" alt="" />
+					</span>
+					<a  class=" icon primary solid fa-plus fa-5x" href="{% url 'transaction_create' %}">
+						<!--
+						<h2>Nouvelle commande</h2>
+						-->
+						<div class="content">
+							<p style="font-size:22px;">Inscrire une nouvelle commande.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style2">
+					<span class="image">
+						<img src="{% static 'images/pic02.jpg' %}" alt="" />
+					</span>
+					<a href="{% url 'transaction_calendar' %}">
+						<h2>Calendrier livraison</h2>
+						<div class="content">
+							<p>Livraison à effectuer.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style3">
+					<span class="image">
+						<img src="{% static 'images/pic03.jpg' %}" alt="" />
+					</span>
+					<a href="{% url 'transaction_list' %}">
+						<h2>Commandes</h2>
+						<div class="content">
+							<p>Liste des commandes.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style4">
+					<span class="image">
+						<img src="{% static 'images/pic02.jpg' %}" alt="" />
+					</span>
+					<a href="{% url 'client_list' %}">
+						<h2>Clients</h2>
+						<div class="content">
+							<p>Liste des clients.</p>
+						</div>
+					</a>
+				</article>
+				<!--
+				<article class="style5">
+					<span class="image">
+						<img src="{% static 'images/pic05.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Aliquam</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style6">
+					<span class="image">
+						<img src="{% static 'images/pic06.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Veroeros</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style2">
+					<span class="image">
+						<img src="{% static 'images/pic07.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Ipsum</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style3">
+					<span class="image">
+						<img src="{% static 'images/pic08.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Dolor</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style1">
+					<span class="image">
+						<img src="{% static 'images/pic09.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Nullam</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style5">
+					<span class="image">
+						<img src="{% static 'images/pic10.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Ultricies</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style6">
+					<span class="image">
+						<img src="{% static 'images/pic11.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Dictum</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				<article class="style4">
+					<span class="image">
+						<img src="{% static 'images/pic12.jpg' %}" alt="" />
+					</span>
+					<a href="generic.html">
+						<h2>Pretium</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+				-->
+			</section>
+		</div>
+	</div>
+	{% endblock content %}

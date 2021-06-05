@@ -1,0 +1,4 @@
+qrbill
+django
+django-tex
+svglib

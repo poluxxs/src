@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Nouveau client
+{% endblock title%}
+
+{% block content %}
+<form action='.' method='POST'>
+  <div class="row gtr-uniform">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+    {% endfor %}
+
+    <div class="col-12">
+      <tr>
+        <th>{{ form.designation.label_tag }}</th>
+        <td>
+          {{ form.designation.errors }}
+          {{ form.designation }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-6 col-12-small">
+      <tr>
+        <th>{{ form.firstName.label_tag }}</th>
+        <td>
+          {{ form.firstName.errors }}
+          {{ form.firstName }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-6 col-12-small">
+    <tr>
+      <th>{{ form.name.label_tag }}</th>
+      <td>
+        {{ form.name.errors }}
+        {{ form.name }}
+      </td>
+    </tr>
+  </div>
+      <div class="col-5 col-12-medium">
+      <tr>
+        <th>{{ form.street.label_tag }}</th>
+        <td>
+          {{ form.street.errors }}
+          {{ form.street }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-2 col-12-medium">
+
+      <tr>
+        <th>{{ form.postal_code.label_tag }}</th>
+        <td>
+          {{ form.postal_code.errors }}
+          {{ form.postal_code }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-5 col-12-medium">
+      <tr>
+        <th>{{ form.city.label_tag }}</th>
+        <td>
+          {{ form.city.errors }}
+          {{ form.city }}
+        </td>
+      </tr>
+    </div>
+
+      <div class="col-12">
+        <tr>
+          <th>{{ form.email.label_tag }}</th>
+          <td>
+            {{ form.email.errors }}
+            {{ form.email }}
+          </td>
+        </tr>
+        </div>
+
+      <div class="col-12">
+        <ul class="actions">
+          <li><input type="submit" value="Enregistrer le client" class="primary" /></li>
+          <!li><!input type="reset" value="Reset" /><!/li>
+          <li><a href="{% url 'client_list' %}" class="button ">Annuler</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </form>
+  {% endblock %}

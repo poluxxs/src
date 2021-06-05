@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block extraScript %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row gtr-uniform">
+  <div class="col-12">
+    <h2>{{client.name}}  {{client.firstName}}</h2>
+  </div>
+  <div class="col-4 col-12-small">
+    <blockquote>
+      <b>{{client.street}}</b><br>
+      <b>{{client.postal_code}} {{client.city}}</b><br>
+    </blockquote>
+  </div>
+  <div class="col-4 col-12-small">
+    <b>Chiffre d'affaire: {{total_price}}.-</b>
+  </div>
+  <div class="col-4 col-12-small">
+    <b>{{client.email}}</b><br>
+  </div>
+
+  <div class="col-12">
+    <ul class="actions">
+      <li><a href="{% url 'client_edit' client.pk %}?nextID=client_detail{{client.pk}}" class="button small primary" data-tooltip>Editer le client</a></li>
+    </ul>
+  </div>
+  <div class="col-12">
+    <h2>Commandes passée</h2>
+    <table class="table table-bordered table-hovered "cellspacing='0'>
+      <tr>
+        <thead>
+          <tr>
+            <th>Adresse de livraison</th>
+            <th>Date de livraison</th>
+            <th>Date de la commande</th>
+            <th>Valeur total</th>
+            <th></th>
+          </tr>
+        </thead>
+      </tr>
+      {% for transaction, price in mylist %}
+      <tr>
+        <td>
+          {{ transaction.delivery_location_1 }}, {{ transaction.delivery_location_2 }}
+        </td>
+        <td>
+          {{ transaction.delivery_date }}
+        </td>
+        <td>
+          {{ transaction.execution_date }}
+        </td>
+        <td>
+          {{price}}
+        </td>
+        <td>
+          <a class=" icon primary solid fa-pen" href="{% url 'transaction_edit' transaction.pk %}?nextID=client_detail{{client.pk}}" title="Editer la transaction" data-tooltip></a>
+
+          <a class=" icon primary solid fa-search" href="{% url 'transaction_detail' transaction.pk %}" title="Détail de la transaction" data-tooltip></a>
+
+          <a class=" icon primary solid fa-trash" href="{% url 'transaction_delete' transaction.pk %}?nextID=client_detail{{client.pk}}" title="Supprimer la transaction" data-tooltip></a>
+
+        </td>
+      </tr>
+      {% endfor %}
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+          <td> {{total_price}} </td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}

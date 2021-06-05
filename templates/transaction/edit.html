@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Editer commande
+{% endblock title%}
+
+{% block content %}
+
+<form action=".?{{next_url}}" method='POST'>
+
+  <div class="row gtr-uniform">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+    {% endfor %}
+
+    <div class="col-12">
+      <h2>Informations client</h2>
+      <tr>
+        <th>{{ form.client.label_tag }}</th>
+        <td>
+          {{ form.client.errors }}
+          {{ form.client }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-12">
+      <ul class="actions">
+        <li><a href="{% url 'client_create' 1 %}" class="button primary small">Nouveau client</a></li>
+      </ul>
+    </div>
+    <span class="image main"><img src="{% static 'images/long.png' %}" alt="" /></span>
+
+    <div class="col-12">
+      <h2>Informations livraison</h2>
+    </div>
+    <div class="col-12">
+
+      <tr>
+        <th>{{ form.description.label_tag }}</th>
+        <td>
+          {{ form.description.errors }}
+          {{ form.description }}
+        </td>
+      </tr>
+
+    </div>
+    <div class="col-12">
+
+      <tr>
+        <th>{{ form.delivery_location_1.label_tag }}</th>
+        <td>
+          {{ form.delivery_location_1.errors }}
+          {{ form.delivery_location_1 }}
+        </td>
+      </tr>
+      <tr>
+        <th>{{ form.delivery_location_2.label_tag }}</th>
+        <td>
+          {{ form.delivery_location_2.errors }}
+          {{ form.delivery_location_2 }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-4 col-12-small">
+      <tr>
+        <th>{{ form.delivery_date.label_tag }}</th>
+        <td>
+          {{ form.delivery_date.errors }}
+          {{ form.delivery_date }}
+        </td>
+      </tr>
+    </div>
+
+    <div class="col-4 col-12-small">
+      <tr>
+        <th>{{ form.delivery_time.label_tag }}</th>
+        <td>
+          {{ form.delivery_time.errors }}
+          {{ form.delivery_time }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-4 col-12-small">
+      <tr>
+        <th>{{ form.delivery_fee.label_tag }}</th>
+        <td>
+          {{ form.delivery_fee.errors }}
+          {{ form.delivery_fee }}
+        </td>
+      </tr>
+    </div>
+
+
+
+    <div class="col-12">
+      <ul class="actions">
+        <li><input type="submit" value="Modifier la commande" class="primary" /></li>
+        <!--
+        <li><a href="{% url 'transaction_list' %}" class="button ">Annuler</a></li>
+      -->
+    </ul>
+  </div>
+</div>
+</form>
+
+{% endblock %}
+
+
+{% block extraScript %}
+{% endblock %}

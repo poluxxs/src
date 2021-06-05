@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Nouvelle commande
+{% endblock title%}
+
+{% block content %}
+<form action='.' method='POST'>
+  <div class="row gtr-uniform">
+    {% csrf_token %}
+
+    <div class="col-12">
+      <h2>Liste des produits</h2>
+    </div>
+    {% if product_list %}
+
+    <div class="col-12">
+      <div class="table-wrapper">
+        <table class="alt">
+          <thead>
+            <tr>
+              <th>Désignation</th>
+              <th>Quantitée</th>
+              <th>Prix</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in product_list %}
+            <tr>
+              <td>{{ product.designation}}</td>
+              <td>{{ product.quantity}}</td>
+              <td>{{ product.price}}</td>
+              <td>
+                <!-- {{form.field_name.value}} have to make this update-->
+                <a class=" icon primary solid fa-trash" name="delete" value="delete" href="{% url 'product_tmp_delete' product.pk %}?next={{  transaction_form.client.value }}" title="Supprimer le produit" data-tooltip></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"></td>
+              <td> {{price_sum}} </td>
+              <td>
+                <ul class="actions">
+                  <li><a href="{% url 'product_tmp_delete_all' %}?next={{  transaction_form.client.value }}" class="button primary small">Tout supprimer</a></li>
+                </ul>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    <div class="col-6 col-12-medium">
+      <tr>
+        <th>{{ product_form.designation.label_tag }}</th>
+        <td>
+          {{ product_form.designation.errors }}
+          {{ product_form.designation }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-3 col-12-medium">
+      <tr>
+        <th>{{ product_form.quantity.label_tag }}</th>
+        <td>
+          {{ product_form.quantity.errors }}
+          {{ product_form.quantity }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-3 col-12-medium" >
+      <tr>
+        <th>{{ product_form.price.label_tag }}</th>
+        <td>
+          {{ product_form.price.errors }}
+          {{ product_form.price }}
+        </td>
+      </tr>
+    </div>
+
+    <div class="col-12">
+      <ul class="actions">
+        <li><button name="product" value="product"  type="submit"  class="primary small">Ajouter un produit</button> </li>
+      </ul>
+    </div>
+  </div>
+
+</form>
+<span class="image main"><img src="{% static 'images/long.png' %}" alt="" /></span>
+
+<form action='.' method='POST'>
+  <div class="row gtr-uniform">
+    {% csrf_token %}
+    {{ transaction_form.non_field_errors }}
+    {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+    {% endfor %}
+
+    <div class="col-12">
+      <h2>Informations client</h2>
+      <tr>
+        <th>{{ transaction_form.client.label_tag }}</th>
+        <td>
+          {{ transaction_form.client.errors }}
+          {{ transaction_form.client }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-12">
+      <ul class="actions">
+        <li><a href="{% url 'client_create' 1 %}" class="button primary small">Nouveau client</a></li>
+      </ul>
+    </div>
+    <span class="image main"><img src="{% static 'images/long.png' %}" alt="" /></span>
+
+    <div class="col-12">
+      <h2>Informations livraison</h2>
+    </div>
+    <div class="col-12">
+
+      <tr>
+        <th>{{ transaction_form.description.label_tag }}</th>
+        <td>
+          {{ transaction_form.description.errors }}
+          {{ transaction_form.description }}
+        </td>
+      </tr>
+
+    </div>
+    <div class="col-12">
+
+      <tr>
+        <th>{{ transaction_form.delivery_location_1.label_tag }}</th>
+        <td>
+          {{ transaction_form.delivery_location_1.errors }}
+          {{ transaction_form.delivery_location_1 }}
+        </td>
+      </tr>
+      <tr>
+        <th>{{ transaction_form.delivery_location_2.label_tag }}</th>
+        <td>
+          {{ transaction_form.delivery_location_2.errors }}
+          {{ transaction_form.delivery_location_2 }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-4 col-12-small">
+      <tr>
+        <th>{{ transaction_form.delivery_date.label_tag }}</th>
+        <td>
+          {{ transaction_form.delivery_date.errors }}
+          {{ transaction_form.delivery_date }}
+        </td>
+      </tr>
+    </div>
+
+    <div class="col-4 col-12-small">
+      <tr>
+        <th>{{ transaction_form.delivery_time.label_tag }}</th>
+        <td>
+          {{ transaction_form.delivery_time.errors }}
+          {{ transaction_form.delivery_time }}
+        </td>
+      </tr>
+    </div>
+    <div class="col-4 col-12-small">
+      <tr>
+        <th>{{ transaction_form.delivery_fee.label_tag }}</th>
+        <td>
+          {{ transaction_form.delivery_fee.errors }}
+          {{ transaction_form.delivery_fee }}
+        </td>
+      </tr>
+    </div>
+
+    {{ form.media }}
+
+
+    <div class="col-12">
+      <ul class="actions">
+        <li><input type="submit" value="Valider la commande" class="primary" /></li>
+        <li><input type="reset" value="Reset" /></li>
+      </ul>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
+
+
+{% block extraScript %}
+{% endblock %}
