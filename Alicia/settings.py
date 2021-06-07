@@ -25,7 +25,7 @@ SECRET_KEY = 'm=cmy*&lyn@(i(0wak-=pdh5(r8)$ov9p060a&q*y9doik-f=v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['petalerouge.pythonanywhere.com']
 
 
 # Application definition
