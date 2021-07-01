@@ -64,21 +64,22 @@ def generate_PDF(request,pk):
         my_bill.as_svg(temp)
         temp.seek(0)
         drawing = svg2rlg(temp)
-    renderPDF.drawToFile(drawing, file_name+"_bill.pdf")
-
+    #renderPDF.drawToFile(drawing, "/home/PetaleRouge/src/media/"+file_name+"_bill.pdf")
+    renderPDF.drawToFile(drawing, "/home/PetaleRouge/src/media/bill.pdf")
     PDF = compile_template_to_pdf(template_name, context)
     #return render_to_pdf(request, template_name, context, filename=file_name+'.pdf')
 
-    f = open(file_name+".pdf", "wb")
-    f.write(PDF)
+    #f = open(file_name+".pdf", "wb")
+    #f.write(PDF)
 
     #response = FileResponse(f, as_attachment=True)
 
 
-    response = HttpResponse(PDF,'application/pdf')
-    response['Content-Disposition'] = 'attachment; filename='+file_name+'.pdf'
+    #response = HttpResponse(PDF,'application/pdf')
+    #response['Content-Disposition'] = 'attachment; filename='+file_name+'.pdf'
 
-    return response
+    #return response
+    return render_to_pdf(request, template_name, context, filename=file_name+'.pdf')
 """
 def generate_PDF(request,pk):
 
