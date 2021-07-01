@@ -36,7 +36,7 @@ class TransactionCalendarView(LoginRequiredMixin, ListView):
 
     def get(self, request, *args, **kwargs):
 
-        locale.setlocale(locale.LC_ALL, 'fr')
+        locale.setlocale(locale.LC_ALL, 'French')
 
         today = date.today()
         #find monday
