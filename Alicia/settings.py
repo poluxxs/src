@@ -25,7 +25,7 @@ SECRET_KEY = 'm=cmy*&lyn@(i(0wak-=pdh5(r8)$ov9p060a&q*y9doik-f=v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['petalerouge.pythonanywhere.com']
 
 
 # Application definition
@@ -151,10 +151,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATIC_ROOT = 'C:/Users/Polux/Dev/Alicia/venv/src/static'
-
-STATICFILES_DIRS = [
+STATIC_ROOT = [
     os.path.join(BASE_DIR,'static'),
 ]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = [
+    os.path.join(BASE_DIR,'media'),
+]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR,'static'),
+#]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
